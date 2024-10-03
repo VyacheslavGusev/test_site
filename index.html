@@ -117,6 +117,9 @@
         document.getElementById('section-title').textContent = translations[lang].sectionTitle;
         document.getElementById('section-content').textContent = translations[lang].sectionContent;
         document.getElementById('selected-flag').src = translations[lang].flag;
+        document.querySelector('.dropbtn').textContent = ''; // Очистить текст кнопки перед вставкой флага и названия
+        document.querySelector('.dropbtn').appendChild(document.getElementById('selected-flag'));
+        document.querySelector('.dropbtn').appendChild(document.createTextNode(' ' + (lang === 'ru' ? 'Русский' : lang === 'en' ? 'English' : 'Italiano')));
     }
 
     // Проверка сохраненного языка при загрузке страницы
@@ -124,19 +127,6 @@
         const savedLanguage = localStorage.getItem('selectedLanguage') || 'ru'; // По умолчанию русский язык
         switchLanguage(savedLanguage);
     });
-
-    // Закрытие выпадающего меню при клике вне его
-    window.onclick = function(event) {
-        if (!event.target.matches('.dropbtn')) {
-            const dropdowns = document.getElementsByClassName("dropdown-content");
-            for (let i = 0; i < dropdowns.length; i++) {
-                const openDropdown = dropdowns[i];
-                if (openDropdown.style.display === "block") {
-                    openDropdown.style.display = "none";
-                }
-            }
-        }
-    };
 </script>
 
 </body>
