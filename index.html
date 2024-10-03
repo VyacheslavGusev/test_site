@@ -64,7 +64,7 @@
 <header>
     <div class="language-dropdown">
         <div class="dropdown">
-            <button id="dropbtn" class="dropbtn"><img id="selected-flag" src="flags/ru.png" alt="Flag" class="flag-icon"> Русский</button>
+            <button class="dropbtn"><img id="selected-flag" src="flags/ru.png" alt="Flag" class="flag-icon"> Русский</button>
             <div class="dropdown-content">
                 <a href="#" onclick="switchLanguage('ru')"><img src="flags/ru.png" alt="RU" class="flag-icon"> Русский</a>
                 <a href="#" onclick="switchLanguage('en')"><img src="flags/en.png" alt="EN" class="flag-icon"> English</a>
@@ -117,9 +117,6 @@
         document.getElementById('section-title').textContent = translations[lang].sectionTitle;
         document.getElementById('section-content').textContent = translations[lang].sectionContent;
         document.getElementById('selected-flag').src = translations[lang].flag;
-
-        // Закрытие выпадающего меню после выбора
-        document.querySelector('.dropdown-content').style.display = 'none';
     }
 
     // Проверка сохраненного языка при загрузке страницы
@@ -141,6 +138,9 @@
         }
     };
 </script>
+
+</body>
+</html>
 
 </body>
 </html>
