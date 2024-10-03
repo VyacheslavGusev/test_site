@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ваше Имя - Визитка</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+        section {
+            padding: 40px;
+        }
+        .photo {
+            width: 150px;
+            border-radius: 50%;
+        }
+        .language-switch {
+            margin-top: 20px;
+        }
+        button {
+            margin: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <img src="your-photo-url.jpg" alt="Your Photo" class="photo">
+    <h1 id="name">Ваше Имя</h1>
+    <p id="tagline">Товарная аналитика, Excel и визуализация</p>
+</header>
+
+<section>
+    <h2 id="section-title">Товарная аналитика в Excel</h2>
+    <p id="section-content">Описание вашего опыта работы с аналитикой в Excel и визуализацией данных.</p>
+</section>
+
+<div class="language-switch">
+    <button onclick="switchLanguage('ru')">Русский</button>
+    <button onclick="switchLanguage('en')">English</button>
+    <button onclick="switchLanguage('it')">Italiano</button>
+</div>
+
+<script>
+    const translations = {
+        ru: {
+            name: "Ваше Имя",
+            tagline: "Товарная аналитика, Excel и визуализация",
+            sectionTitle: "Товарная аналитика в Excel",
+            sectionContent: "Описание вашего опыта работы с аналитикой в Excel и визуализацией данных."
+        },
+        en: {
+            name: "Your Name",
+            tagline: "Product Analytics, Excel and Visualization",
+            sectionTitle: "Product Analytics in Excel",
+            sectionContent: "Description of your experience in product analytics using Excel and data visualization."
+        },
+        it: {
+            name: "Il Tuo Nome",
+            tagline: "Analisi di prodotto, Excel e visualizzazione",
+            sectionTitle: "Analisi di prodotto in Excel",
+            sectionContent: "Descrizione della tua esperienza nell'analisi di prodotto con Excel e visualizzazione dei dati."
+        }
+    };
+
+    function switchLanguage(lang) {
+        document.getElementById('name').textContent = translations[lang].name;
+        document.getElementById('tagline').textContent = translations[lang].tagline;
+        document.getElementById('section-title').textContent = translations[lang].sectionTitle;
+        document.getElementById('section-content').textContent = translations[lang].sectionContent;
+    }
+</script>
