@@ -36,6 +36,7 @@
         .dropdown-content {
             display: none;
             position: absolute;
+            right: 0; /* Исправление позиции */
             background-color: #f1f1f1;
             min-width: 160px;
             box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
@@ -57,6 +58,12 @@
             width: 20px;
             margin-right: 10px;
         }
+        .dropbtn {
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
     </style>
 </head>
 <body>
@@ -64,7 +71,9 @@
 <header>
     <div class="language-dropdown">
         <div class="dropdown">
-            <button class="dropbtn"><img id="selected-flag" src="flags/ru.png" alt="Flag" class="flag-icon"> Русский</button>
+            <button class="dropbtn">
+                <img id="selected-flag" src="flags/ru.png" alt="Flag" class="flag-icon"> Русский
+            </button>
             <div class="dropdown-content">
                 <a href="#" onclick="switchLanguage('ru')"><img src="flags/ru.png" alt="RU" class="flag-icon"> Русский</a>
                 <a href="#" onclick="switchLanguage('en')"><img src="flags/en.png" alt="EN" class="flag-icon"> English</a>
