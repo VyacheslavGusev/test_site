@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Вячеслав Гусев - Data Science для бизнеса</title>
-   <style>
+    <title>Ваше Имя - Визитка</title>
+    <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -14,6 +14,7 @@
             background-color: #f8f9fa;
             padding: 20px;
             text-align: center;
+            position: relative;
         }
         section {
             padding: 40px;
@@ -52,9 +53,6 @@
         .dropdown:hover .dropdown-content {
             display: block;
         }
-        .dropdown:hover .dropbtn {
-            background-color: #3e8e41;
-        }
         .flag-icon {
             width: 20px;
             margin-right: 10px;
@@ -66,7 +64,7 @@
 <header>
     <div class="language-dropdown">
         <div class="dropdown">
-            <button class="dropbtn"><img id="selected-flag" src="flags/ru.png" alt="Flag" class="flag-icon"> Русский</button>
+            <button id="dropbtn" class="dropbtn"><img id="selected-flag" src="flags/ru.png" alt="Flag" class="flag-icon"> Русский</button>
             <div class="dropdown-content">
                 <a href="#" onclick="switchLanguage('ru')"><img src="flags/ru.png" alt="RU" class="flag-icon"> Русский</a>
                 <a href="#" onclick="switchLanguage('en')"><img src="flags/en.png" alt="EN" class="flag-icon"> English</a>
@@ -110,13 +108,40 @@
     };
 
     function switchLanguage(lang) {
+        // Сохранение выбранного языка в localStorage
+        localStorage.setItem('selectedLanguage', lang);
+
+        // Обновление содержимого страницы
         document.getElementById('name').textContent = translations[lang].name;
         document.getElementById('tagline').textContent = translations[lang].tagline;
         document.getElementById('section-title').textContent = translations[lang].sectionTitle;
         document.getElementById('section-content').textContent = translations[lang].sectionContent;
         document.getElementById('selected-flag').src = translations[lang].flag;
+
+        // Закрытие выпадающего меню после выбора
+        document.querySelector('.dropdown-content').style.display = 'none';
     }
+
+    // Проверка сохраненного языка при загрузке страницы
+    document.addEventListener("DOMContentLoaded", function() {
+        const savedLanguage = localStorage.getItem('selectedLanguage') || 'ru'; // По умолчанию русский язык
+        switchLanguage(savedLanguage);
+    });
+
+    // Закрытие выпадающего меню при клике вне его
+    window.onclick = function(event) {
+        if (!event.target.matches('.dropbtn')) {
+            const dropdowns = document.getElementsByClassName("dropdown-content");
+            for (let i = 0; i < dropdowns.length; i++) {
+                const openDropdown = dropdowns[i];
+                if (openDropdown.style.display === "block") {
+                    openDropdown.style.display = "none";
+                }
+            }
+        }
+    };
 </script>
 
 </body>
 </html>
+
