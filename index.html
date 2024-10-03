@@ -14,7 +14,6 @@
             background-color: #f8f9fa;
             padding: 20px;
             text-align: center;
-            position: relative;
         }
         section {
             padding: 40px;
@@ -36,7 +35,6 @@
         .dropdown-content {
             display: none;
             position: absolute;
-            right: 0;
             background-color: #f1f1f1;
             min-width: 160px;
             box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
@@ -51,20 +49,15 @@
         .dropdown-content a:hover {
             background-color: #ddd;
         }
-        .dropdown.open .dropdown-content {
+        .dropdown:hover .dropdown-content {
             display: block;
+        }
+        .dropdown:hover .dropbtn {
+            background-color: #3e8e41;
         }
         .flag-icon {
             width: 20px;
             margin-right: 10px;
-        }
-        .dropbtn {
-            background-color: transparent;
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
-            display: flex;
-            align-items: center;
         }
     </style>
 </head>
@@ -73,10 +66,8 @@
 <header>
     <div class="language-dropdown">
         <div class="dropdown">
-            <button class="dropbtn" onclick="toggleDropdown()">
-                <img id="selected-flag" src="flags/ru.png" alt="Flag" class="flag-icon"> Русский
-            </button>
-            <div class="dropdown-content" id="dropdown-menu">
+            <button class="dropbtn"><img id="selected-flag" src="flags/ru.png" alt="Flag" class="flag-icon"> Русский</button>
+            <div class="dropdown-content">
                 <a href="#" onclick="switchLanguage('ru')"><img src="flags/ru.png" alt="RU" class="flag-icon"> Русский</a>
                 <a href="#" onclick="switchLanguage('en')"><img src="flags/en.png" alt="EN" class="flag-icon"> English</a>
                 <a href="#" onclick="switchLanguage('it')"><img src="flags/it.png" alt="IT" class="flag-icon"> Italiano</a>
@@ -118,36 +109,13 @@
         }
     };
 
-    // Функция для открытия/закрытия выпадающего меню
-    function toggleDropdown() {
-        const dropdownMenu = document.getElementById('dropdown-menu');
-        dropdownMenu.classList.toggle('open');
-    }
-
-    // Функция смены языка
     function switchLanguage(lang) {
-        // Сохранение выбранного языка в localStorage
-        localStorage.setItem('selectedLanguage', lang);
-
-        // Обновление содержимого страницы
         document.getElementById('name').textContent = translations[lang].name;
         document.getElementById('tagline').textContent = translations[lang].tagline;
         document.getElementById('section-title').textContent = translations[lang].sectionTitle;
         document.getElementById('section-content').textContent = translations[lang].sectionContent;
         document.getElementById('selected-flag').src = translations[lang].flag;
-        document.querySelector('.dropbtn').textContent = ''; // Очистить текст кнопки перед вставкой флага и названия
-        document.querySelector('.dropbtn').appendChild(document.getElementById('selected-flag'));
-        document.querySelector('.dropbtn').appendChild(document.createTextNode(' ' + (lang === 'ru' ? 'Русский' : lang === 'en' ? 'English' : 'Italiano')));
-        
-        // Закрытие выпадающего меню после выбора
-        document.getElementById('dropdown-menu').classList.remove('open');
     }
-
-    // Проверка сохраненного языка при загрузке страницы
-    document.addEventListener("DOMContentLoaded", function() {
-        const savedLanguage = localStorage.getItem('selectedLanguage') || 'ru'; // По умолчанию русский язык
-        switchLanguage(savedLanguage);
-    });
 </script>
 
 </body>
