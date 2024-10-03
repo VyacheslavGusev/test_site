@@ -51,7 +51,7 @@
         .dropdown-content a:hover {
             background-color: #ddd;
         }
-        .dropdown:hover .dropdown-content {
+        .dropdown.open .dropdown-content {
             display: block;
         }
         .flag-icon {
@@ -73,10 +73,10 @@
 <header>
     <div class="language-dropdown">
         <div class="dropdown">
-            <button class="dropbtn">
+            <button class="dropbtn" onclick="toggleDropdown()">
                 <img id="selected-flag" src="flags/ru.png" alt="Flag" class="flag-icon"> Русский
             </button>
-            <div class="dropdown-content">
+            <div class="dropdown-content" id="dropdown-menu">
                 <a href="#" onclick="switchLanguage('ru')"><img src="flags/ru.png" alt="RU" class="flag-icon"> Русский</a>
                 <a href="#" onclick="switchLanguage('en')"><img src="flags/en.png" alt="EN" class="flag-icon"> English</a>
                 <a href="#" onclick="switchLanguage('it')"><img src="flags/it.png" alt="IT" class="flag-icon"> Italiano</a>
@@ -118,6 +118,13 @@
         }
     };
 
+    // Функция для открытия/закрытия выпадающего меню
+    function toggleDropdown() {
+        const dropdownMenu = document.getElementById('dropdown-menu');
+        dropdownMenu.classList.toggle('open');
+    }
+
+    // Функция смены языка
     function switchLanguage(lang) {
         // Сохранение выбранного языка в localStorage
         localStorage.setItem('selectedLanguage', lang);
@@ -131,6 +138,9 @@
         document.querySelector('.dropbtn').textContent = ''; // Очистить текст кнопки перед вставкой флага и названия
         document.querySelector('.dropbtn').appendChild(document.getElementById('selected-flag'));
         document.querySelector('.dropbtn').appendChild(document.createTextNode(' ' + (lang === 'ru' ? 'Русский' : lang === 'en' ? 'English' : 'Italiano')));
+        
+        // Закрытие выпадающего меню после выбора
+        document.getElementById('dropdown-menu').classList.remove('open');
     }
 
     // Проверка сохраненного языка при загрузке страницы
@@ -142,8 +152,3 @@
 
 </body>
 </html>
-
-
-</body>
-</html>
-
